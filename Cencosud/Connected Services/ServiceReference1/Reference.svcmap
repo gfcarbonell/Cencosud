@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0e8a16e-302d-49f8-988e-9ef66ab7f76c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="QueryCustomerScoring.wsdl" MetadataType="Wsdl" ID="e2d3e56b-d51f-4ea4-ba88-266b429a9937" SourceId="1" SourceUrl="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?wsdl" />
+    <MetadataFile FileName="QueryCustomerScoring.xsd" MetadataType="Schema" ID="0766cdd7-5b06-40f4-b533-b269872195f8" SourceId="1" SourceUrl="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?SCHEMA%2FCommonCore%2FEBM%2FCommon%2FEBMV2" />
+    <MetadataFile FileName="QueryCustomerScoring1.xsd" MetadataType="Schema" ID="5a088f16-4aa8-4314-b49f-4699d04c7879" SourceId="1" SourceUrl="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?SCHEMA%2FBancoPeru%2FCore%2FABM%2FCustomerScoringABM" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

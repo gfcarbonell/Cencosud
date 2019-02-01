@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:commonebm="http://xmlns.cencosud.corp/Core/EBM/Common/EBM" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.cencosud.corp/Core/EBM/Common/EBM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="EBMHeaderType">
+    <xsd:sequence>
+      <xsd:element name="EBMID" type="xsd:string" />
+      <xsd:element minOccurs="0" name="CreationDateTime" type="xsd:dateTime" />
+      <xsd:element name="Sender" type="commonebm:SenderType" />
+      <xsd:element minOccurs="0" name="Target" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="EBMTracking" type="commonebm:EBMTrackingType" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Addressing" type="commonebm:EBMAddressingType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SenderType">
+    <xsd:sequence>
+      <xsd:element name="Application" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">Source Application
+						Name. For example: Siebel, SAP, CDP 
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Country" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN"> The country from
+						where the service is called. For example: AR, CL, US
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="BusinessUnit" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Business Unit, for example
+						HC (Home Center)
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" maxOccurs="1" name="LegalEntity" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN"> Legal entity: SAP identifier of legal entity. 
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="EBMHeader" type="commonebm:EBMHeaderType" />
+  <xsd:complexType name="EBMType">
+    <xsd:sequence>
+      <xsd:element ref="commonebm:EBMHeader" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ErrorDetail" nillable="true" type="commonebm:ErrorDetailType" />
+  <xsd:complexType name="ResponseEBMType">
+    <xsd:sequence>
+      <xsd:element ref="commonebm:EBMHeader" />
+      <xsd:element name="ReturnCode" type="xsd:string" />
+      <xsd:element name="ReturnMessage" type="xsd:string" />
+      <xsd:element minOccurs="0" name="ErrorCode" nillable="true" type="xsd:string" />
+      <xsd:element minOccurs="0" ref="commonebm:ErrorDetail" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ErrorDetailType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ErrorType" type="xsd:string" />
+      <xsd:element minOccurs="0" name="HandlerServiceName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SourceApplication" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SourceServiceName" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SourceErrorCode" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SourceErrorMessage" type="xsd:string" />
+      <xsd:element minOccurs="0" name="SourceErrorTrace" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EBMTrackingType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="FileName">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						File Name being
+						processed
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ParentEBMID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Informative field.
+						Related Document Parent ID. For Example: Credit Note Related With
+						This Particular Document  
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="IntegrationCode" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Informative field.
+						It is the code that business assign to each integration. 
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="ReferenceID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Reference to a business document identification.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="EBMAddressingType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="ReplyToAddress" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Informative field.
+						Informs the target where the message is coming from.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element minOccurs="0" name="CorrelID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="EN">
+						Informative field.
+						Provides an application-defined identifier that the receiving application can use to sort messages.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

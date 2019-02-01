@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WL5G3N0:definitions xmlns:WL5G3N2="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoring" xmlns:WL5G3N1="http://xmlns.cencosud.corp/BancoPeru/Core/ABM/CustomerScoring/CustomerScoring" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" name="QueryCustomerScoring" targetNamespace="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoring" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/">
+  <WL5G3N0:types>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:req="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoring" xmlns:abm="http://xmlns.cencosud.corp/BancoPeru/Core/ABM/CustomerScoring/CustomerScoring" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import schemaLocation="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?SCHEMA%2FBancoPeru%2FCore%2FABM%2FCustomerScoringABM" namespace="http://xmlns.cencosud.corp/BancoPeru/Core/ABM/CustomerScoring/CustomerScoring" />
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="QueryCustomerScoringReqMsg">
+    <WL5G3N0:part name="QueryCustomerScoringABM" element="WL5G3N1:QueryCustomerScoringRequestABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="QueryCustomerScoringRespMsg">
+    <WL5G3N0:part name="QueryCustomerScoringResponseABM" element="WL5G3N1:QueryCustomerScoringResponseABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="QueryCustomerScoringMediumReqMsg">
+    <WL5G3N0:part name="QueryCustomerScoringMediumABM" element="WL5G3N1:QueryCustomerScoringMediumRequestABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="QueryCustomerScoringMediumRespMsg">
+    <WL5G3N0:part name="QueryCustomerScoringResponseABM" element="WL5G3N1:QueryCustomerScoringResponseABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="QueryCustomerScoringFullReqMsg">
+    <WL5G3N0:part name="QueryCustomerScoringFullABM" element="WL5G3N1:QueryCustomerScoringFullRequestABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:message name="QueryCustomerScoringFullRespMsg">
+    <WL5G3N0:part name="QueryCustomerScoringResponseABM" element="WL5G3N1:QueryCustomerScoringResponseABM" />
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="QueryCustomerScoring">
+    <WL5G3N0:operation name="QueryCustomerScoring">
+      <WL5G3N0:input message="WL5G3N2:QueryCustomerScoringReqMsg" />
+      <WL5G3N0:output message="WL5G3N2:QueryCustomerScoringRespMsg" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="QueryCustomerScoringMedium">
+      <WL5G3N0:input message="WL5G3N2:QueryCustomerScoringMediumReqMsg" />
+      <WL5G3N0:output message="WL5G3N2:QueryCustomerScoringMediumRespMsg" />
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="QueryCustomerScoringFull">
+      <WL5G3N0:input message="WL5G3N2:QueryCustomerScoringFullReqMsg" />
+      <WL5G3N0:output message="WL5G3N2:QueryCustomerScoringFullRespMsg" />
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="QueryCustomerScoringBinding" type="WL5G3N2:QueryCustomerScoring">
+    <WL5G3N3:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <WL5G3N0:operation name="QueryCustomerScoring">
+      <WL5G3N3:operation soapAction="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoring" />
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="QueryCustomerScoringMedium">
+      <WL5G3N3:operation soapAction="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoringMedium" />
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="QueryCustomerScoringFull">
+      <WL5G3N3:operation soapAction="http://xmlns.cencosud.corp/BancoPeru/CustomerScoring/Siebel/Resources/WSDL/QueryCustomerScoringFull" />
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal" />
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="QueryCustomerScoringBindingQSService">
+    <WL5G3N0:port name="QueryCustomerScoringBindingQSPort" binding="WL5G3N2:QueryCustomerScoringBinding">
+      <WL5G3N3:address location="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring" />
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

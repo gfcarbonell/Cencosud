@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://xmlns.cencosud.corp/BancoPeru/Core/ABM/CustomerScoring/CustomerScoring" xmlns:commonebm="http://xmlns.cencosud.corp/Core/EBM/Common/EBM" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.cencosud.corp/BancoPeru/Core/ABM/CustomerScoring/CustomerScoring" version="1.00" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="http://osbprd-bc.cencosud.corp:8101/BancoPeru/CustomerScoring/QueryCustomerScoring?SCHEMA%2FCommonCore%2FEBM%2FCommon%2FEBMV2" namespace="http://xmlns.cencosud.corp/Core/EBM/Common/EBM" />
+  <xsd:simpleType name="NonEmptyString">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1" />
+      <xsd:pattern value=".*[^\s].*" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="empty">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="0" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="integer-or-empty">
+    <xsd:union memberTypes="xsd:integer empty" />
+  </xsd:simpleType>
+  <xsd:simpleType name="float-or-empty">
+    <xsd:union memberTypes="xsd:float empty" />
+  </xsd:simpleType>
+  <xsd:complexType name="CreditRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="productCategory" type="xsd:string" />
+      <xsd:element minOccurs="1" name="productCode" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ApplicantType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="documentNumber" type="xsd:integer" />
+      <xsd:element minOccurs="1" name="documentType" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ApplicationType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="decisioningRequestType" type="xsd:string" />
+      <xsd:element minOccurs="0" name="processingRequestType" type="xsd:string" />
+      <xsd:element minOccurs="0" name="deliveryOptionCode" type="xsd:string" />
+      <xsd:element minOccurs="1" name="submitterId" type="xsd:string" />
+      <xsd:element minOccurs="1" name="applicationCrossReferenceId" type="xsd:string" />
+      <xsd:element minOccurs="1" name="flowType" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringABMRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="applicant" type="ApplicantType" />
+      <xsd:element minOccurs="1" name="application" type="ApplicationType" />
+      <xsd:element minOccurs="1" name="creditRequest" type="CreditRequestType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringRequestABMType">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="commonebm:EBMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryCustomerScoringABMDataAreaRequestType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringABMDataAreaRequestType">
+    <xsd:sequence>
+      <xsd:element ref="QueryCustomerScoringABMRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryCustomerScoringRequestABM" type="QueryCustomerScoringRequestABMType" />
+  <xsd:element name="QueryCustomerScoringABMRequest" type="QueryCustomerScoringABMRequestType" />
+  <xsd:complexType name="ProductType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="delayDays" type="integer-or-empty" />
+      <xsd:element minOccurs="1" name="limit" type="float-or-empty" />
+      <xsd:element minOccurs="1" name="currentBalance" type="float-or-empty" />
+      <xsd:element minOccurs="1" name="totalBalance" type="float-or-empty" />
+      <xsd:element minOccurs="1" name="TCType" type="xsd:string" />
+      <xsd:element minOccurs="1" name="cashUsage" type="integer-or-empty" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ApplicantMediumType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="channel" type="xsd:string" />
+      <xsd:element minOccurs="0" name="otherProductDelayDays" type="integer-or-empty" />
+      <xsd:element minOccurs="1" name="documentNumber" type="xsd:integer" />
+      <xsd:element minOccurs="1" name="maritalStatus" type="xsd:string" />
+      <xsd:element minOccurs="0" name="dateJoinedCompany" type="xsd:string" />
+      <xsd:element minOccurs="0" name="birthDate" type="xsd:string" />
+      <xsd:element minOccurs="0" name="additionalFlag" type="integer-or-empty" />
+      <xsd:element minOccurs="0" name="contributorFlagRequest" type="integer-or-empty" />
+      <xsd:element minOccurs="1" name="nationality" type="xsd:string" />
+      <xsd:element minOccurs="1" name="studiesLevel" type="xsd:string" />
+      <xsd:element minOccurs="1" name="occupation" type="xsd:string" />
+      <xsd:element minOccurs="1" name="employerRUC" type="xsd:string" />
+      <xsd:element minOccurs="0" name="behaviourScore" type="float-or-empty" />
+      <xsd:element minOccurs="1" name="gender" type="xsd:string" />
+      <xsd:element minOccurs="1" name="laborSituation" type="xsd:string" />
+      <xsd:element minOccurs="1" name="cellPhone" type="xsd:string" />
+      <xsd:element minOccurs="1" name="homePhone" type="xsd:string" />
+      <xsd:element minOccurs="1" name="workPhone" type="xsd:string" />
+      <xsd:element minOccurs="1" name="housingType" type="xsd:string" />
+      <xsd:element minOccurs="1" name="documentType" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SubProductType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="paymentHabits" type="integer-or-empty" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringMediumABMRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="product" type="ProductType" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="applicant" type="ApplicantMediumType" />
+      <xsd:element minOccurs="1" name="application" type="ApplicationType" />
+      <xsd:element minOccurs="1" name="creditRequest" type="CreditRequestType" />
+      <xsd:element minOccurs="0" name="subProduct" type="SubProductType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringMediumRequestABMType">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="commonebm:EBMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryCustomerScoringMediumABMDataAreaRequestType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringMediumABMDataAreaRequestType">
+    <xsd:sequence>
+      <xsd:element ref="QueryCustomerScoringMediumABMRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryCustomerScoringMediumRequestABM" type="QueryCustomerScoringMediumRequestABMType" />
+  <xsd:element name="QueryCustomerScoringMediumABMRequest" type="QueryCustomerScoringMediumABMRequestType" />
+  <xsd:complexType name="IndicatorsType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="sustainableIncome" type="xsd:float" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VerificationResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="ResVDO" type="xsd:string" />
+      <xsd:element minOccurs="1" name="ResVFD" type="xsd:string" />
+      <xsd:element minOccurs="1" name="ResVFL" type="xsd:string" />
+      <xsd:element minOccurs="1" name="ResVTC" type="xsd:string" />
+      <xsd:element minOccurs="1" name="ResVTD" type="xsd:string" />
+      <xsd:element minOccurs="1" name="ResVTL" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringFullABMRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="indicators" type="IndicatorsType" />
+      <xsd:element minOccurs="0" name="product" type="ProductType" />
+      <xsd:element minOccurs="0" name="verificationResponse" type="VerificationResponseType" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="applicant" type="ApplicantMediumType" />
+      <xsd:element minOccurs="1" name="application" type="ApplicationType" />
+      <xsd:element minOccurs="1" name="creditRequest" type="CreditRequestType" />
+      <xsd:element minOccurs="0" name="subProduct" type="SubProductType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringFullRequestABMType">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="commonebm:EBMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryCustomerScoringFullABMDataAreaRequestType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringFullABMDataAreaRequestType">
+    <xsd:sequence>
+      <xsd:element ref="QueryCustomerScoringFullABMRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryCustomerScoringFullRequestABM" type="QueryCustomerScoringFullRequestABMType" />
+  <xsd:element name="QueryCustomerScoringFullABMRequest" type="QueryCustomerScoringFullABMRequestType" />
+  <xsd:complexType name="ResultsType">
+    <xsd:sequence>
+      <xsd:element name="NetIncomeCalculationFactor" type="float-or-empty" />
+      <xsd:element name="LimitFactor" type="float-or-empty" />
+      <xsd:element name="MaximumFactor" type="float-or-empty" />
+      <xsd:element name="MaximumCapFactor" type="float-or-empty" />
+      <xsd:element name="TimesSalaryFactor" type="float-or-empty" />
+      <xsd:element name="CalculatedLimit" type="float-or-empty" />
+      <xsd:element name="MaximumOfferLimit" type="float-or-empty" />
+      <xsd:element name="MinimumOfferLimit" type="float-or-empty" />
+      <xsd:element name="SiembraLine" type="float-or-empty" />
+      <xsd:element name="SiembraPlusLine" type="float-or-empty" />
+      <xsd:element name="CalculatedLineMultiplier" type="float-or-empty" />
+      <xsd:element name="RCI" type="float-or-empty" />
+      <xsd:element name="MaximumRCI" type="float-or-empty" />
+      <xsd:element name="MaximumCapRCI" type="float-or-empty" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CDAResponseType">
+    <xsd:sequence>
+      <xsd:element name="VerificationDecision" type="xsd:string" />
+      <xsd:element name="FlagOffer" type="xsd:string" />
+      <xsd:element name="FlagIncomeUsedType" type="xsd:string" />
+      <xsd:element name="FlagVDO" type="xsd:string" />
+      <xsd:element name="FlagVFD" type="xsd:string" />
+      <xsd:element name="FlagVFL" type="xsd:string" />
+      <xsd:element name="FlagVTC" type="xsd:string" />
+      <xsd:element name="FlagVTD" type="xsd:string" />
+      <xsd:element name="FlagVTL" type="xsd:string" />
+      <xsd:element name="GrossIncome" type="xsd:float" />
+      <xsd:element name="NetIncome" type="xsd:float" />
+      <xsd:element name="Offer" type="xsd:float" />
+      <xsd:element name="FinalOffer" type="xsd:float" />
+      <xsd:element name="PercentageCashAvailable" type="xsd:float" />
+      <xsd:element name="OfferedProduct" type="xsd:float" />
+      <xsd:element name="PostAutonomy" type="xsd:float" />
+      <xsd:element name="InvestigatePostAutonomy" type="xsd:float" />
+      <xsd:element name="LimitantPostAutonomy" type="xsd:float" />
+      <xsd:element name="Resolution" type="xsd:string" />
+      <xsd:element name="Segment" type="xsd:string" />
+      <xsd:element name="SustainIncome" type="xsd:integer" />
+      <xsd:element name="ProcessType" type="xsd:string" />
+      <xsd:element name="ReasonCodes" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SolicitantResponseType">
+    <xsd:sequence>
+      <xsd:element name="RiskProfile" type="xsd:string" />
+      <xsd:element name="Seniority" type="xsd:integer" />
+      <xsd:element name="Age" type="xsd:integer" />
+      <xsd:element name="FlagRiskActualCharge" type="xsd:float" />
+      <xsd:element name="FlagExecute" type="xsd:integer" />
+      <xsd:element name="FlagSustainIncome" type="xsd:integer" />
+      <xsd:element name="Observations" type="xsd:string" />
+      <xsd:element name="OriginationScore" type="xsd:float" />
+      <xsd:element name="SalaryType" type="xsd:integer" />
+      <xsd:element name="Index" type="xsd:integer" />
+      <xsd:element name="internNegativeBase" type="xsd:integer" />
+      <xsd:element name="OFACBase" type="xsd:integer" />
+      <xsd:element name="PEPBase" type="xsd:integer" />
+      <xsd:element name="DocumentNumber" type="xsd:integer" />
+      <xsd:element minOccurs="1" name="Results" type="ResultsType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringResponseType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="Solicitant" type="SolicitantResponseType" />
+      <xsd:element minOccurs="1" name="CDAResponse" type="CDAResponseType" />
+      <xsd:element name="SerializedResponse" type="xsd:string" />
+      <xsd:element name="SerializedRequest" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryCustomerScoringResponseABMType">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="commonebm:ResponseEBMType">
+        <xsd:sequence>
+          <xsd:element name="DataArea" type="QueryCustomerScoringResponseDataAreaType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="QueryCustomerScoringResponseABM" type="QueryCustomerScoringResponseABMType" />
+  <xsd:complexType name="QueryCustomerScoringResponseDataAreaType">
+    <xsd:sequence>
+      <xsd:element ref="QueryCustomerScoringResponse" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="QueryCustomerScoringResponse" type="QueryCustomerScoringResponseType" />
+</xsd:schema>
